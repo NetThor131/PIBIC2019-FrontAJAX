@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <script>
+        $(function() {
+            $('.form').submit(function(){
+                $.ajax({
+                    url: 'http://victortirano.pythonanywhere.com/',
+                    type: 'POST',
+                    data: $('.form').serialize(),
+                    success: function( data ) {
+                        $('.resposta').html(data);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Corretor</title>
+</head>
+<body>
+    <div class="container">
+        <form class="form" method="POST">
+            <div class="form-group">
+                <textarea name="errorMsg" class="form-control" placeholder="Cole seu codigo aqui!"></textarea>
+                <textarea class="resposta"></textarea>
+            </div>
+            <div class="form-group">
+                <select name="extension" class="form-control" placeholder="Selecione a linguagem">
+                    <option selected>Selecione a linguagem</option>
+                    <option value=".java">Java</option> 
+                    <option value=".c">C</option>
+                    <option value=".cpp">C++</option>
+                    <option value=".python">Python</option>
+                  </select>
+            </div>
+            <button type="submit"> Enviar </button>
+        </form>
+    </div>
+</body>
+</html>
